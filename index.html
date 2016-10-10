@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chat</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">NettstudentChat</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Datateknikk</a></li>
+                <li><a href="#about">Satelitt</a></li>
+                <li><a href="#contact">De andre greien</a></li>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" role="main" style="height: 90%">>
+    <br><br><br>
+
+    <div class="bs-example" data-example-id="media-alignment">
+        <div class="media">
+            <div class="media-left"><a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64"
+                                                      src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdhZmE3MmE0OSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2FmYTcyYTQ5Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4yMjY1NjI1IiB5PSIzNi41MzI4MTI1Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                                      data-holder-rendered="true" style="width: 64px; height: 64px;">
+            </a></div>
+            <div class="media-body"><h4 class="media-heading">Username1</h4>
+
+                <p>Bacon ipsum dolor amet ham hock rump drumstick shankle bacon sirloin tail landjaeger meatloaf fatback. Kielbasa kevin rump tri-tip shoulder ground round. Swine leberkas beef ribs landjaeger tri-tip corned beef turducken shankle tail bacon alcatra short loin ham hock andouille. Chicken pastrami short ribs filet mignon andouille.</p>
+
+                <p>Pork belly ham turkey ground round short loin prosciutto rump sausage tenderloin burgdoggen. Boudin drumstick brisket chuck landjaeger bresaola ribeye tail pork belly ground round t-bone sirloin alcatra jerky andouille. Pork belly pork strip steak ground round short ribs shank turducken kielbasa leberkas frankfurter flank tri-tip salami ribeye turkey. Frankfurter alcatra jerky filet mignon, prosciutto biltong pork tri-tip bresaola ribeye tail tongue. Short ribs ribeye ham biltong short loin alcatra fatback chicken ground round cow pig turkey meatball capicola. Tri-tip burgdoggen pig, tongue spare ribs ribeye venison. Fatback venison pastrami, jerky spare ribs cupim ground round swine tri-tip pork chop pig bresaola ribeye ball tip.</p></div>
+        </div>
+        <div class="bs-example" data-example-id="media-alignment">
+            <div class="media">
+                <div class="media-left"><a href="#"> <img alt="64x64" class="media-object" data-src="holder.js/64x64"
+                                                          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdhZmE3MmE0OSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2FmYTcyYTQ5Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4yMjY1NjI1IiB5PSIzNi41MzI4MTI1Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                                          data-holder-rendered="true"
+                                                          style="width: 64px; height: 64px;">
+                </a></div>
+                <div class="media-body"><h4 class="media-heading">Username2</h4>
+
+                    <p>Ham prosciutto shoulder ground round landjaeger short ribs ham hock shank bacon drumstick ball tip jerky biltong pork. Tongue pork loin andouille pork chop, picanha prosciutto porchetta meatball hamburger short loin. Cupim shankle filet mignon brisket porchetta beef ribs boudin ham hock turducken pork chop fatback sausage hamburger pork. Beef andouille kielbasa tongue. Tongue flank boudin, pancetta kielbasa prosciutto swine capicola. Alcatra kielbasa ball tip, burgdoggen brisket landjaeger turkey tri-tip rump.</p></div>
+            </div>
+            <div class="bs-example" data-example-id="media-alignment">
+                <div class="media">
+                    <div class="media-left"><a href="#"> <img alt="64x64" class="media-object"
+                                                              data-src="holder.js/64x64"
+                                                              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdhZmE3MmE0OSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2FmYTcyYTQ5Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4yMjY1NjI1IiB5PSIzNi41MzI4MTI1Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                                              data-holder-rendered="true"
+                                                              style="width: 64px; height: 64px;">
+                    </a></div>
+                    <div class="media-body"><h4 class="media-heading">Username3</h4>
+
+                        <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="chat">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Send</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="js/jquery.js"></script>
+            <script src="js/bootstrap.js"></script>
+</body>
+</html>
