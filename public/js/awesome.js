@@ -24,6 +24,8 @@ $(document).ready(function () {
     var brukerSkriverNaa = false;
     var skrevSist;
     var socket = io(); //<-- denne greia
+    var nyeMeldinger = 0;
+
 
     /*
      JQuery Magi som setter feltet der en skriver inn brukernavnet i fokus når du starter koden. Gjør det letter å komme igang ;)
@@ -106,7 +108,7 @@ $(document).ready(function () {
     }
 
     /*
-     Legger til funksjonen "bruker skriver"
+     Legger til funksjonen "bruker x skriver" til chatvinduet
      */
     function brukerSkriver(data) {
         data.skriver = true;
@@ -188,7 +190,10 @@ $(document).ready(function () {
     }
 
     /*
-     Denne
+     Denne funskonen ser i alle medlinger om det er en medling som har med classetaggen "melding skriver"
+     Så fremt den er dette, så finner den ut brukeravnet til personen som skriver.
+     Den vil deretter ha mulighet til å søke opp hvikeln av brukerene som nå skal fades bort og forsvinne.
+     Hvis vi bare valgte alle klasser som har melding skriver ville vi ha fjernet alle andre brukere samtidig.
      */
     function fjernBrukerSkriverMelding(data) {
         return $('.melding.skriver').filter(function (i) {
@@ -202,14 +207,34 @@ $(document).ready(function () {
      */
     //I BROKE THIS - per kristian.
     function faaFargeFraBrukernavn(brukernavn) {
-        console.log("finnFargeTilBruker kjøres");
         var randomHashKode = 7;
-        for (var i = 0; i < brukernavn.length; i++) {
+        var lengdePaBrukernavn = brukernavn.length;
+        for (var i = 0; i < lengdePaBrukernavn; i++) {
             randomHashKode = brukernavn.charCodeAt(i) + (randomHashKode << 5) - randomHashKode;
         }
         var index = Math.abs(randomHashKode % BRUKERNAVNFARGER.lengsth);
         return BRUKERNAVNFARGER[index];
     }
+
+
+    /*
+    Denne samler bare opp alt som skal kjøres før melding sendes til serveren.
+    Den kjører funksjonen sendMelding (som henter verdien i tekstfeletet og sender dette)
+    så sørger den for å si ifra at brukeren nå er ferdig med å skrive.
+     */
+    function sendMeldingTilServer(){
+        sendMelding();
+        socket.emit('skriver ikke');
+        brukerSkriverNaa = false;
+    }
+
+    /*
+     Denne funksjonen er laget for å håntere "send" knappen i koden.
+     denne hører nå kun etter om det er en click event på knappen, hvis det er det, sender en trigger til sendMeldingTilServer()
+     */
+    $('.sendTekstButton').click(function () {
+        sendMeldingTilServer()
+    });
 
     /*
      Denne funksjonen leser input som skrives på tastaturet. Så fremt en ikke trykker enter, så registerer den at
@@ -221,11 +246,31 @@ $(document).ready(function () {
         }
         if (event.which === 13) {
             if (brukernavn) {
-                sendMelding();
-                socket.emit('skriver ikke');
-                brukerSkriverNaa = false;
+                sendMeldingTilServer()
             } else {
                 setBrukernavn();
+            }
+        }
+    });
+
+    /*
+     Denne funksjonen endrer tittelfeltet øverst på siden dynamisk ut ifra om det har kommet inn nye meldinger
+     Den sjekker om $(window) som i hovedsak er nettleservinduet har fokus, eller om fokus blir fjernet fra vinduet.
+     His den får fokus setter den antall nye meldinger til 0, samt setter tittelen til "nettchat" igjen.
+     Så fremt så fremt den ikke har fokus legger den til variablenen nyeMeldinger.
+     på alle event som har 'ny melding' som kommer fra serveren, inkrementerer denne med 1
+     */
+    $(window).on("blur focus", function (tilstand) {
+        var tilstandsType = $(this).data("tilstand");
+        if (tilstandsType != tilstand.type) {
+            switch (tilstand.type) {
+                case "blur":
+                    $(document).attr("title", "NettChat (" + nyeMeldinger + ")");
+                    break;
+                case "focus":
+                    nyeMeldinger = 0;
+                    $(document).attr("title", "NettChat ");
+                    break;
             }
         }
     });
@@ -266,8 +311,11 @@ $(document).ready(function () {
     /*
      Denne hører etter om det kommer en ny melding, Om det kommer ny melding kjører den funksjonen
      nyChatMelding()
+     Siden blir også oppdatert med antall nye meldinger som har komemt inn siden sist, så frem vidnuet ikke har fokus.
      */
     socket.on('ny melding', function (data) {
+        nyeMeldinger++;
+        $(document).attr("title", "NettChat (" + nyeMeldinger + ")");
         nyChatMelding(data);
     });
 

@@ -49,6 +49,7 @@ io.on('connection', function (samtale) {
     Denne funksjonen tar inn meldingen fra brukeren, og videresender den til Alle brukere, sammen med brukernavnet som sendte meldingen
      */
     samtale.on('ny melding', function (melding) {
+        console.log(samtale.brukernavn + ": " + melding);
         samtale.broadcast.emit('ny melding', {brukernavn: samtale.brukernavn, melding: melding});
     });
 
