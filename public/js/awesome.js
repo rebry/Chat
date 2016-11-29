@@ -97,7 +97,8 @@ $(document).ready(function () {
     }
 
     /*
-     Denne funksjonen legger til en ny melding fra bruker til chatten. (Samt legger til formateringen slik at det ser fint ut)
+     Denne funksjonen legger til en ny melding fra bruker til chatten.
+     gjenbrukes også for å legge til at bruker X skriver.
      */
     function nyChatMelding(data, valg) {
         console.log("nyChatMelding kjøres");
@@ -210,6 +211,7 @@ $(document).ready(function () {
      For å gjøre chatten pen, har vi en funskjon som velger en farge ut ifra hva brukeren skriver inn som brukernavn.
      etter utregningen returnerer den kun indexen til BRUKERNAVNFARGER som da blir fargen til brukeren.
      */
+    //I BROKE THIS - per kristian.
     function faaFargeFraBrukernavn(brukernavn) {
         console.log("finnFargeTilBruker kjøres");
         var randomHashKode = 7;

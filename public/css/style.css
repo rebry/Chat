@@ -35,11 +35,10 @@ ul {
 
 .login.side .form .brukernavnInput {
     border: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 1px inset #000000;
     outline: none;
-    padding-bottom: 15px;
     text-align: center;
-    width: 400px;
+    width: 200px;
 }
 
 .login.side .tittel {

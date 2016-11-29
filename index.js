@@ -2,53 +2,56 @@
 NODE EXPRESS SERVER WITH SOCKETIO
  */
 
-var express = require('express');
-var app = express();
+var express = require('express');                   //laster inn express rammeverket til variabellent express
+var app = express();                                //lager en instans av express server til variabelen app (webserveren)
 
-var port = process.env.PORT || 3000;
-var server = require('http').createServer(app);
+var port = process.env.PORT || 3000;                //setter portnummeret
+var server = require('http').createServer(app);     // starter en server, over Http, som bruker express rammeverket over
 
-var io = require('socket.io')(server);
+var io = require('socket.io')(server);              // instasierer socket.io rammeverket på vår server laget ovenfor
 
-var brukereOnline = 0;
+var brukereOnline = 0;                              // variablel som lagrer brukere online
 
+
+/*
+Her starter vi serveren. etter serveren er startet logger vi at serveren er startet og portnummeret.
+ */
 server.listen(port, function () {
     console.log('Serveren har åpnet på: %d', port);
 });
 
+app.use(express.static(__dirname + '/public'));     // For å få tilgang til undermappen public, (Der frontGUIet ligger) så trenger vi tilgang /public mappa
 
-app.use(express.static(__dirname + '/public'));
-
+/*
+en 'connection' event blir sendt fra brukeren så fort de har lastet siden,
+dette setter basisen for en socket.io samtale
+ */
 io.on('connection', function (samtale) {
-    var validUser = false;
+    var validUser = false;                          // sjekker om brukeren har logget på.
 
+
+    /*
+    en 'leggTilBruker' event
+     */
     samtale.on('leggTilBruker', function (brukernavn) {
-        //if true(return), aka do nothing
-        console.log("forsøker å legge til bruker");
         if (validUser) return;
         samtale.brukernavn = brukernavn;
         brukereOnline++;
         validUser = true;
-        console.log("brukeren logget på: "+ brukernavn);
         samtale.emit('logget in', {antallBrukere: brukereOnline});
-        console.log("brukeren logget inn og fått tilbake antall online brukere, forteller resten at han har joinet!");
         samtale.broadcast.emit('bruker tilkoblet', {brukernavn: samtale.brukernavn, antallBrukere: brukereOnline});
-        console.log("alle har fått beskjed")
     });
 
     samtale.on('ny melding', function (melding) {
-        console.log(melding);
         samtale.broadcast.emit('ny melding', {brukernavn: samtale.brukernavn, melding: melding});
     });
 
 
     samtale.on('skriver', function () {
-        console.log(samtale.brukernavn + "skriver noe")
         samtale.broadcast.emit('skriver', {brukernavn: samtale.brukernavn});
     });
 
     samtale.on('skriver ikke', function () {
-        console.log(samtale.brukernavn + "skriver ikke lenger")
         samtale.broadcast.emit('skriver ikke', {brukernavn: samtale.brukernavn});
     });
 
