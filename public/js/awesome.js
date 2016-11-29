@@ -22,6 +22,7 @@ $(document).ready(function () {
     var brukernavn;
     var brukerTilkoblet = false;
     var brukerSkriverNaa = false;
+    var skrevSist;
     var socket = io(); //<-- denne greia
 
     /*
@@ -73,7 +74,7 @@ $(document).ready(function () {
      */
     function sendMelding() {
         var melding = rensDette($('.chatTekstFelt').val());
-        if (melding && brukerTilkoblet && melding != "") {
+        if (melding && brukerTilkoblet){
             $('.chatTekstFelt').val('');
             nyChatMelding({
                 brukernavn: brukernavn,
@@ -103,9 +104,9 @@ $(document).ready(function () {
         console.log(data);
         console.log(valg);
         valg = valg || {};
-        if (sjekkOmSkriver(data).length !== 0) {
+        if (fjernBrukerSkriverMelding(data).length !== 0) {
             valg.fade = false;
-            sjekkOmSkriver(data).remove();
+            fjernBrukerSkriverMelding(data).remove();
         }
         var facyBrukernavnMedFarge = $('<span class="brukernavn"/>').text(data.brukernavn).css('color', faaFargeFraBrukernavn(data.brukernavn));
         var meldingFraBruker = $('<span class="meldingKropp">').text(data.melding);
@@ -118,8 +119,6 @@ $(document).ready(function () {
      Legger til funksjonen "bruker skriver"
      */
     function brukerSkriver(data) {
-        console.log("bruker Skriver");
-        console.log(data);
         data.skriver = true;
         data.melding = 'skriver';
         nyChatMelding(data);
@@ -129,9 +128,7 @@ $(document).ready(function () {
      Etter en gitt tid, så gjrø denne funksjonen at meldingen "buker x skriver" fader fancy ut. (med jquery)
      */
     function fjernBrukerSkriver(data) {
-        console.log("bruker stoppet å skrive kjøres");
-        console.log(data);
-        sjekkOmSkriver(data).fadeOut(function () {
+        fjernBrukerSkriverMelding(data).fadeOut(function () {
             $(this).remove();
         });
     }
@@ -183,16 +180,15 @@ $(document).ready(function () {
      Etter en gitt timer uten aktivitet, notifiseres brukerene om at brukeren ikke lenger skriver.
 
      */
-    function oppdaterAtBrukerSkriver() {
+    function oppdaterOmBrukerSkriver() {
         if (brukerTilkoblet == true) {
-            if (!brukerSkriverNaa) {
+            if (brukerSkriverNaa == false) {
                 brukerSkriverNaa = true;
                 socket.emit('skriver');
             }
-            var dato = new Date();
-            var skrevSist = dato.getTime();
+            skrevSist = (new Date()).getTime();
             setTimeout(function () {
-                var skriveTimer = dato.getTime();
+                var skriveTimer = (new Date()).getTime();
                 var tidsdifferansen = skriveTimer - skrevSist;
                 if (tidsdifferansen >= FAKTISKSKRIVER && brukerSkriverNaa) {
                     socket.emit('skriver ikke');
@@ -203,10 +199,10 @@ $(document).ready(function () {
     }
 
     /*
-     Denne hjelpeklassen returnerer kun Bruker n Skriver en melding
+     Denne
      */
-    function sjekkOmSkriver(data) {
-        return $('.meldinger.skriver').filter(function (i) {
+    function fjernBrukerSkriverMelding(data) {
+        return $('.melding.skriver').filter(function (i) {
             return $(this).data('brukernavn') === data.brukernavn;
         });
     }
@@ -248,7 +244,7 @@ $(document).ready(function () {
      Om en skriver inn på inputfeltet, så sender denne en event som sier at Brukeren skriver
      */
     $('.chatTekstFelt').on('input', function () {
-        oppdaterAtBrukerSkriver();
+        oppdaterOmBrukerSkriver();
     });
 
     /*
