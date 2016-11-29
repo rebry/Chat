@@ -1,7 +1,7 @@
 {
-  "name": "prosjektchat",
+  "name": "ProsjektOppgaveChat",
   "version": "0.0.1",
-  "description": "ChatApp",
+  "description": "som en prosjektoppkgave har vi valgt å forsøke å lage en chat.",
   "dependencies": {
     "express": "^4.10.2",
     "socket.io": "^1.5.1",
@@ -14,6 +14,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Per Kristian",
+  "author": "Per Kristian Thorsen <pth012@post.uit.no>, Kristian Selvåg Sundet <ksu021@post.uit.no>, Robert Lislelid <rli039@post.uit.no>, Hans Jørgen Aalberg <haa033@post.uit.no>",
   "license": "MIT"
 }
