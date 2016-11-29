@@ -37,15 +37,13 @@ $(document).ready(function () {
      hvis ikke, så skriver den det er X brukere online.
      */
     function meldingOmNyBruker(data) {
-        console.log("MeldingNyBruker kjøres")
-        console.log(data);
         var melding = '';
         if (data.antallBrukere === 1) {
             melding += "Det er 1 bruker online";
         } else {
             melding += "Det er " + data.antallBrukere + " brukere online";
         }
-        sysstemlog(melding);
+        systemLogg(melding);
     }
 
     /*
@@ -54,15 +52,12 @@ $(document).ready(function () {
      hvis(brukernavn) sjekker om det er satt et brukernavn, hvis det ikke er det, vil variabelen være tom og returnere False
      */
     function setBrukernavn() {
-        console.log("setBrukernavn kjøres");
         brukernavn = rensDette($('.brukernavnInput').val().trim());
-        console.log(brukernavn + "har blitt med i chatten.");
         if (brukernavn) {
             $('.login.side').hide();
             $('.chat.side').show();
             $('.login.side').off('click');
             $('.chatTekstFelt').focus();
-            console.log('spør server om å legge til bruker');
             socket.emit('leggTilBruker', brukernavn);
         }
     }
@@ -74,7 +69,7 @@ $(document).ready(function () {
      */
     function sendMelding() {
         var melding = rensDette($('.chatTekstFelt').val());
-        if (melding && brukerTilkoblet){
+        if (melding && brukerTilkoblet) {
             $('.chatTekstFelt').val('');
             nyChatMelding({
                 brukernavn: brukernavn,
@@ -88,10 +83,7 @@ $(document).ready(function () {
      Denne funksjonen gjør ikke annet enn å legge til tekst litt fancy på siden.
      Altså, ikke ny melding fra bruker, men ny melding fra serveren.
      */
-    function sysstemlog(melding, valg) {
-        console.log(melding);
-        console.log(valg);
-        console.log("skrivUtMelding kjøres");
+    function systemLogg(melding, valg) {
         var element = $("<li>").addClass('logg').text(melding);
         leggTilMeldingselement(element, valg);
     }
@@ -101,9 +93,6 @@ $(document).ready(function () {
      gjenbrukes også for å legge til at bruker X skriver.
      */
     function nyChatMelding(data, valg) {
-        console.log("nyChatMelding kjøres");
-        console.log(data);
-        console.log(valg);
         valg = valg || {};
         if (fjernBrukerSkriverMelding(data).length !== 0) {
             valg.fade = false;
@@ -263,9 +252,6 @@ $(document).ready(function () {
         $('.chatTekstFelt').focus();
     });
 
-    /*
-     Følgende funksjoner er laget for å håndtere kommunikasjon mellom Server og brukere.
-     */
 
     /*
      Hvis brukeren har skrevet seg et brukernavn trigges denne for å sekive Velkommer til siden.
@@ -273,7 +259,7 @@ $(document).ready(function () {
     socket.on('logget in', function (data) {
         brukerTilkoblet = true;
         var message = "Velkommen til prosjekgruppeChatten – ";
-        sysstemlog(message, {prepend: true});
+        systemLogg(message, {prepend: true});
         meldingOmNyBruker(data);
     });
 
@@ -290,7 +276,7 @@ $(document).ready(function () {
      brukere ser dette.
      */
     socket.on('bruker tilkoblet', function (data) {
-        sysstemlog(data.brukernavn + ' Ble med i chatten');
+        systemLogg(data.brukernavn + ' Ble med i chatten');
         meldingOmNyBruker(data);
     });
 
@@ -301,7 +287,7 @@ $(document).ready(function () {
      lenger "skriver" om han gjore dette når han logget av.
      */
     socket.on('bruker frakoblet', function (data) {
-        sysstemlog(data.brukernavn + ' forlot kanalen');
+        systemLogg(data.brukernavn + ' forlot kanalen');
         meldingOmNyBruker(data);
         fjernBrukerSkriver(data);
     });
