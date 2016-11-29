@@ -1,0 +1,87 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.sider {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.side {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.login.side .form {
+    top: 40%;
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    position: absolute;
+    text-align: center;
+}
+
+.login.side .form .brukernavnInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    padding-bottom: 5px;
+    text-align: center;
+    width: 300px;
+}
+.login.side .brukernavnInput {
+    font-size: 200%;
+}
+
+.chat.side {
+    display: none;
+}
+
+.meldinger {
+    font-size: 18px;
+}
+
+.inndataMelding {
+    font-size: 18px;
+}
+
+.chatomraade {
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+.meldinger {
+    padding-top:50px;
+    margin-top: 60px;
+    height: 100%;
+    overflow-y: scroll;
+    list-style-type: none;
+}
+
+.meldinger.skriver .meldingKropp {
+    color: gray;
+}
+
+.brukernavn {
+    font-weight: 700;
+    overflow: hidden;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.inndataMelding {
+    bottom: 0;
+    left: 0;
+    outline: none;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+}

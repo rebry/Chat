@@ -1,0 +1,19 @@
+{
+  "name": "prosjektchat",
+  "version": "0.0.1",
+  "description": "ChatApp",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.5.1",
+    "bootstrap": "*",
+    "jquery": "*"
+  },
+  "main": "index.js",
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Per Kristian",
+  "license": "MIT"
+}
