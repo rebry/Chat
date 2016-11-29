@@ -7,7 +7,7 @@ $(document).ready(function () {
      @ BRUKERNAVNFARGER = En samling med HEX farger som tilgies et brukernavn for å lettere diffransiere de forskjellige brukerene
      */
     var TID = 100;
-    var FAKTISKSKRIVER = 300;
+    var FAKTISKSKRIVER = 500;
     var BRUKERNAVNFARGER = [
         '#fc0000', '#80ff00', '#0080ff', '#ffff00',
         '#fc007e', '#00ff00', '#ff8000', '#ff8000',
@@ -41,9 +41,9 @@ $(document).ready(function () {
         console.log(data);
         var melding = '';
         if (data.antallBrukere === 1) {
-            melding += "det er 1 bruker online";
+            melding += "Det er 1 bruker online";
         } else {
-            melding += "det er " + data.antallBrukere + " brukere online";
+            melding += "Det er " + data.antallBrukere + " brukere online";
         }
         sysstemlog(melding);
     }
@@ -142,9 +142,6 @@ $(document).ready(function () {
      scrollto sørger for at siden scroller av seg selv.
      */
     function leggTilMeldingselement(meldingsElement, valg) {
-        console.log("leggTilMeldingselement kjøres");
-        console.log(meldingsElement);
-        console.log(valg);
         var element = $(meldingsElement);
 
         if (valg = false) {
@@ -164,6 +161,8 @@ $(document).ready(function () {
         } else {
             arrayMedMeldinger.append(element);
         }
+        console.log(arrayMedMeldinger[0].scrollTop);
+        console.log(arrayMedMeldinger[0].scrollHeight);
         arrayMedMeldinger[0].scrollTop = arrayMedMeldinger[0].scrollHeight;
     }
 
