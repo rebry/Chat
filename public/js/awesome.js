@@ -212,8 +212,9 @@ $(document).ready(function () {
         for (var i = 0; i < lengdePaBrukernavn; i++) {
             randomHashKode = brukernavn.charCodeAt(i) + (randomHashKode << 5) - randomHashKode;
         }
-        var index = Math.abs(randomHashKode % BRUKERNAVNFARGER.lengsth);
-        return BRUKERNAVNFARGER[index];
+        var index = Math.abs(randomHashKode % BRUKERNAVNFARGER.length);
+        var returnertbrukernavn = "[" + BRUKERNAVNFARGER[index] + "]";
+        return returnertbrukernavn;
     }
 
 
@@ -303,7 +304,7 @@ $(document).ready(function () {
      */
     socket.on('logget in', function (data) {
         brukerTilkoblet = true;
-        var message = "Velkommen til prosjekgruppeChatten – ";
+        var message = "Velkommen til prosjekgruppeChatten";
         systemLogg(message, {prepend: true});
         meldingOmNyBruker(data);
     });
