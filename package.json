@@ -12,6 +12,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Per Kristian Thorsen <pth012@post.uit.no>, Kristian Selvåg Sundet <ksu021@post.uit.no>, Robert Lislelid <rli039@post.uit.no>, Hans Jørgen Aalberg <haa033@post.uit.no>",
+  "author": "Per Kristian Thorsen, Kristian Selvåg Sundet, Robert Lislelid, Hans Jørgen Aalberg",
   "license": "MIT"
 }
